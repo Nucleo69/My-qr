@@ -758,7 +758,6 @@ const translations = {
     chart_gender: "Gender Distribution", female: "Female — 38 (58%)", male: "Male — 27 (42%)",
     chart_macros: "Average Daily Macronutrients", mac_protein: "Protein", mac_carbs: "Carbs", mac_fat: "Fat", mac_cal: "Calories",
     chart_weight: "Weight Distribution (kg)",
-    chart_rda: "Protein vs RDA (0.8g/kg)", rda_met: "Met RDA — 34 (52%)", rda_not: "Below RDA — 31 (48%)",
     survey_note: "* Data collected from 65 college students aged 18–22. Average weight: 60.98 kg. Average age: 19.48 years.",
     s2_title: "Ill Effects of Protein Powders", s2_card_title: "6 Documented Health Risks of Commercial Protein Supplements",
     eff1_title: "Disorders of Bone & Calcium Homeostasis", eff1_desc: "Excessive protein intake increases urinary calcium excretion, leading to reduced bone mineral density. High-protein diets create an acid load that the body neutralises by leaching calcium from bones, increasing risk of osteoporosis over time.", eff1_ref: "📄 Sellmeyer et al., 2001 — AJCN (PubMed)",
@@ -789,7 +788,6 @@ const translations = {
     chart_gender: "लिंग वितरण", female: "महिला — 38 (58%)", male: "पुरुष — 27 (42%)",
     chart_macros: "औसत दैनिक पोषक तत्व", mac_protein: "प्रोटीन", mac_carbs: "कार्ब्स", mac_fat: "वसा", mac_cal: "कैलोरी",
     chart_weight: "वजन वितरण (किग्रा)",
-    chart_rda: "प्रोटीन बनाम RDA (0.8g/kg)", rda_met: "RDA पूरी — 34 (52%)", rda_not: "RDA से कम — 31 (48%)",
     survey_note: "* 65 कॉलेज छात्रों से एकत्र डेटा। औसत वजन: 60.98 किग्रा। औसत आयु: 19.48 वर्ष।",
     s2_title: "प्रोटीन पाउडर के दुष्प्रभाव", s2_card_title: "व्यावसायिक प्रोटीन सप्लीमेंट के 6 दस्तावेज़ीकृत स्वास्थ्य जोखिम",
     eff1_title: "हड्डी और कैल्शियम होमियोस्टेसिस के विकार", eff1_desc: "अत्यधिक प्रोटीन सेवन से मूत्र में कैल्शियम का उत्सर्जन बढ़ता है, जिससे हड्डियों का घनत्व कम होता है और ऑस्टियोपोरोसिस का खतरा बढ़ता है।", eff1_ref: "📄 Sellmeyer et al., 2001 — AJCN (PubMed)",
@@ -820,7 +818,6 @@ const translations = {
     chart_gender: "लिंग वितरण", female: "स्त्री — 38 (58%)", male: "पुरुष — 27 (42%)",
     chart_macros: "सरासरी दैनिक पोषक तत्त्वे", mac_protein: "प्रथिने", mac_carbs: "कार्ब्स", mac_fat: "स्निग्धांश", mac_cal: "कॅलरी",
     chart_weight: "वजन वितरण (किग्रा)",
-    chart_rda: "प्रथिने विरुद्ध RDA (0.8g/kg)", rda_met: "RDA पूर्ण — 34 (52%)", rda_not: "RDA पेक्षा कमी — 31 (48%)",
     survey_note: "* 65 महाविद्यालयीन विद्यार्थ्यांकडून गोळा केलेला डेटा. सरासरी वजन: 60.98 किग्रा. सरासरी वय: 19.48 वर्षे.",
     s2_title: "प्रोटीन पावडरचे दुष्परिणाम", s2_card_title: "व्यावसायिक प्रोटीन सप्लीमेंटचे 6 आरोग्य धोके",
     eff1_title: "हाडे आणि कॅल्शियम होमिओस्टॅसिसचे विकार", eff1_desc: "अतिरिक्त प्रथिने सेवनामुळे लघवीतून कॅल्शियम जास्त उत्सर्जित होते, हाडांची घनता कमी होते आणि ऑस्टियोपोरोसिसचा धोका वाढतो.", eff1_ref: "📄 Sellmeyer et al., 2001 — AJCN (PubMed)",
@@ -907,7 +904,6 @@ function drawCharts() {
   if (chartsDrawn) return;
   chartsDrawn = true;
   drawDonut('genderChart', [38, 27], ['#7aad6a', '#4a7c4a']);
-  drawDonut('rdaChart', [34, 31], ['#7aad6a', '#8b2e2e']);
 }
 
 function drawDonut(id, data, colors) {
@@ -918,16 +914,7 @@ function drawDonut(id, data, colors) {
   let start = -Math.PI / 2;
   const cx = 50, cy = 50, r = 40, innerR = 24;
 
-  data.forEach((val, i) => {
-    const angle = (val / total) * 2 * Math.PI;
-    ctx.beginPath();
-    ctx.moveTo(cx, cy);
-    ctx.arc(cx, cy, r, start, start + angle);
-    ctx.closePath();
-    ctx.fillStyle = colors[i];
-    ctx.fill();
-    start += angle;
-  });
+ ;
 
   ctx.beginPath();
   ctx.arc(cx, cy, innerR, 0, 2 * Math.PI);
