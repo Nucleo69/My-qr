@@ -15,8 +15,8 @@
     --green-mid: #4a7c4a;
     --green-light: #7aad6a;
     --accent: #856936;
-    --accent-light: #987c43;
-    --sand: #a58b5f;
+    --accent-light: #cbbea6;
+    --sand: #d2cabb;
     --sand-dark: #31230a;
     --red-warn: #8b2e2e;
     --text: #5b432a;
@@ -911,15 +911,31 @@ function drawDonut(id, data, colors) {
   const canvas = document.getElementById(id);
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
-  const total = data.reduce((a,b) => a+b, 0);
-  let start = -Math.PI / 2;
-  const cx = 50, cy = 50, r = 40, innerR = 24;
+  const total = data.reduce((sum, value) => sum + value, 0);
+  if (!total) return;
 
- ;
+  const cx = canvas.width / 2;
+  const cy = canvas.height / 2;
+  const r = Math.min(cx, cy) - 6;
+  const innerR = r * 0.55;
+  let start = -Math.PI / 2;
+
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  data.forEach((value, index) => {
+    const slice = (value / total) * Math.PI * 2;
+    ctx.beginPath();
+    ctx.moveTo(cx, cy);
+    ctx.arc(cx, cy, r, start, start + slice);
+    ctx.closePath();
+    ctx.fillStyle = colors[index] || '#ccc';
+    ctx.fill();
+    start += slice;
+  });
 
   ctx.beginPath();
-  ctx.arc(cx, cy, innerR, 0, 2 * Math.PI);
-  ctx.fillStyle = 'white';
+  ctx.arc(cx, cy, innerR, 0, Math.PI * 2);
+  ctx.fillStyle = '#fff';
   ctx.fill();
 }
 
